@@ -1,4 +1,4 @@
-import getHealthIndicator from '../basic';
+import {getHealthIndicator,  getHealthSorted } from '../basic';
 
 test.each([
     [{ name: 'Маг', health: 90 }, 'healthy'],
@@ -10,3 +10,21 @@ test.each([
         const result = getHealthIndicator(heroInfo);
         expect(result).toBe(expected);
     });
+
+
+
+test('should sort characters by health', () => {
+    const expected = [
+        { name: 'маг', health: 100 },
+        { name: 'лучник', health: 80 },
+        { name: 'мечник', health: 10 }
+      ];
+    const received = [
+        { name: 'мечник', health: 10 },
+        { name: 'лучник', health: 80 },
+        { name: 'маг', health: 100 }
+      ]
+
+    getHealthSorted(received)
+    expect(JSON.stringify(received)).toBe(JSON.stringify(expected));
+});
